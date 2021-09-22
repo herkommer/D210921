@@ -49,7 +49,7 @@ namespace Demo1
                 listBox1.Items.Add(anka); 
             }
 
-
+            button1.Text = "Colors";
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,7 +59,41 @@ namespace Demo1
 
             ListBox myListofCars = sender as ListBox;
 
-            MessageBox.Show(myListofCars.SelectedItem.GetType().ToString());
+            //MessageBox.Show(myListofCars.SelectedItem.GetType().ToString());
+
+            Car mySelectedCar = myListofCars.SelectedItem as Car;
+
+            MessageBox.Show($"Denna bil kostar {mySelectedCar.Price} kr");
+        }
+
+
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Visa antal färger vi har på bilarna
+
+            int i = Cars.Select(x => x.Color).Distinct().Count();
+            var CarColors = Cars.Select(x => x.Color).Distinct();
+
+            //MessageBox.Show(CarColors.GetType().ToString());
+
+            foreach (var item in CarColors)
+            {
+                listBox2.Items.Add(item);
+            }
+
+            label1.Text = $"Vi erbjuder bilar i {i} olika färger";
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Visa antal bilar i vald färg
+
+            string SelectedColor = (sender as ListBox).SelectedItem as String;
+
+            int i = Cars.FindAll(x => x.Color == SelectedColor).Count;
+
+            MessageBox.Show($"Vi har {i} {SelectedColor} bilar i lager.");
         }
     }
 }
