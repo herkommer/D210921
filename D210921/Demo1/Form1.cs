@@ -45,7 +45,8 @@ namespace Demo1
 
             foreach (Car anka in Cars.OrderBy(x => x.Make))
             {
-                listBox1.Items.Add($"{anka.Make} {anka.Model}");
+                //listBox1.Items.Add($"{anka.Make} {anka.Model}");
+                listBox1.Items.Add(anka); 
             }
 
 
